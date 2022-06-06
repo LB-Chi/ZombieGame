@@ -17,9 +17,9 @@ public class ScenesScript : MonoBehaviour
         
     }
 
-    public void ToGame()
+    public void ToGame(int scene)
     {
-        // File -> Build Settings - Da hab ich die Szenen eine "Nummer" gegeben per Drag&Drop und darum die Nummer 1 für Spiel. Die Lobby hat Nummer 0
-        SceneManager.LoadScene(1);
+        // File -> Build Settings - Da hab ich die Szenen eine "Nummer" gegeben per Drag&Drop und darum die Nummer 1 fï¿½r Spiel. Die Lobby hat Nummer 0
+        SceneManager.LoadScene(scene);
     }
 }

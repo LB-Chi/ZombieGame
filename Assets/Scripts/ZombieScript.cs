@@ -4,43 +4,23 @@ using UnityEngine;
 
 public class ZombieScript : MonoBehaviour
 {
-    private int speed = 3;
+    private int speed = 2;
+    public Transform Player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        PlayerVerfolgen();
     }
 
-    private void PlayerMovement()
+    private void PlayerVerfolgen()
     {
-        Vector2 movementVertical = Vector2.zero;
-        Vector2 movementHorizontal = Vector2.zero;
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            movementHorizontal = Vector2.left;
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            movementVertical = Vector2.up;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            movementHorizontal = Vector2.right;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            movementVertical = Vector2.down;
-        }
-
-        transform.Translate(movementHorizontal * speed * Time.deltaTime);
-        transform.Translate(movementVertical * speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
     }
 }

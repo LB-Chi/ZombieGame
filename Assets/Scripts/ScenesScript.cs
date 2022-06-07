@@ -22,4 +22,10 @@ public class ScenesScript : MonoBehaviour
         // File -> Build Settings - Da hab ich die Szenen eine "Nummer" gegeben per Drag&Drop und darum die Nummer 1 f�r Spiel. Die Lobby hat Nummer 0
         SceneManager.LoadScene(scene);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Quit!");
+    }
 }

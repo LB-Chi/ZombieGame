@@ -5,7 +5,7 @@ using UnityEngine;
 public class ZombieScript : MonoBehaviour
 {
     private int speed = 2;
-    public Transform Player;
+    private Transform Player;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +22,14 @@ public class ZombieScript : MonoBehaviour
     private void PlayerVerfolgen()
     {
         transform.position = Vector2.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space))
+        {
+            GameScript.anzahlZombies--;
+            this.gameObject.SetActive(false);
+        }
     }
 }

@@ -29,6 +29,7 @@ public class ZombieScript : MonoBehaviour
         if (collision.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space))
         {
             GameScript.anzahlZombies--;
+            GameScript.score += 100;
             this.gameObject.SetActive(false);
         }
     }

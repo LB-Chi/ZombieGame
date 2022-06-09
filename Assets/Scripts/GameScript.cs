@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class GameScript : MonoBehaviour
 {
@@ -9,17 +11,21 @@ public class GameScript : MonoBehaviour
 
     public static int anzahlZombies;
 
+    public static int score;
+    public TMP_Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
         anzahlZombies = 0;
+        score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         NeueWelleStarten();
+        scoreAnzeigen();
     }
 
     private void spawnZombie()
@@ -42,5 +48,10 @@ public class GameScript : MonoBehaviour
             spawnZombie();
             spawnZombie();
         }
+    }
+
+    private void scoreAnzeigen()
+    {
+        scoreText.text = "Score: " + score;
     }
 }

@@ -35,7 +35,7 @@ public class GameScript : MonoBehaviour
     {
         if (anzahlZombies == 0)
         {
-            //ICH WEIß FOR SCHLEIFE GEHT AUCH! BIN ZU FAUL
+            //ICH WEIï¿½ FOR SCHLEIFE GEHT AUCH! BIN ZU FAUL
             spawnZombie();
             spawnZombie();
             spawnZombie();

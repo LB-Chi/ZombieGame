@@ -45,8 +45,6 @@ public class GameScript : MonoBehaviour
             spawnZombie();
             spawnZombie();
             spawnZombie();
-            spawnZombie();
-            spawnZombie();
         }
     }
 

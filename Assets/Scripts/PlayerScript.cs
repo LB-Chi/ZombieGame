@@ -6,6 +6,9 @@ public class PlayerScript : MonoBehaviour
 {
     private int speed = 3;
 
+    public static bool schlagfähig;
+    public static float SchlagCountdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +45,20 @@ public class PlayerScript : MonoBehaviour
 
         transform.Translate(movementHorizontal * speed * Time.deltaTime);
         transform.Translate(movementVertical * speed * Time.deltaTime);
+    }
+
+    public static void PlayerKannSchlagen()
+    {
+        SchlagCountdown -= 1 * Time.deltaTime;
+
+        if (SchlagCountdown <= 0)
+        {
+            SchlagCountdown = 0;
+            schlagfähig = true;
+        }
+        else
+        {
+            schlagfähig = false;
+        }
     }
 }

@@ -7,9 +7,15 @@ public class ZombieScript : MonoBehaviour
     private int speed = 2;
     private Transform Player;
 
+    private float ZombieHP;
+    private bool ZombieSchadenBekommen;
+    private bool ZombieKriegtRückstoß;
+
     // Start is called before the first frame update
     void Start()
     {
+        ZombieHP = 9;
+        PlayerScript.SchlagCountdown = 3;
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -17,6 +23,8 @@ public class ZombieScript : MonoBehaviour
     void Update()
     {
         PlayerVerfolgen();
+        PlayerScript.PlayerKannSchlagen();
+        Debug.Log(PlayerScript.SchlagCountdown);
     }
 
     private void PlayerVerfolgen()
@@ -26,7 +34,39 @@ public class ZombieScript : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space))
+        if (collision.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space) && PlayerScript.schlagfähig == true)
+        {
+            ZombieSchadenBekommen = true;
+            ZombieSchaden();
+            stirbZombie();
+        }
+    }
+
+    private void ZombieSchaden()
+    {
+        if (ZombieSchadenBekommen == true)
+        {
+            PlayerScript.SchlagCountdown = 3;
+            ZombieHP = ZombieHP - 1;
+            ZombieKriegtRückstoß = true;
+            ZombieRückstoß();
+            ZombieSchadenBekommen = false;
+        }
+    }
+
+    private void ZombieRückstoß()
+    {
+        if(ZombieKriegtRückstoß == true)
+        {
+            transform.Translate(transform.position.x - Player.transform.position.x, transform.position.y - Player.transform.position.y, 0);
+            Debug.Log("Cbug");
+            ZombieKriegtRückstoß = false;
+        }
+    }
+
+    private void stirbZombie()
+    {
+        if(ZombieHP == 0)
         {
             GameScript.anzahlZombies--;
             GameScript.score += 100;

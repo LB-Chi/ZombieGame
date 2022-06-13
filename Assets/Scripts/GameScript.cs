@@ -30,11 +30,25 @@ public class GameScript : MonoBehaviour
 
     private void spawnZombie()
     {
-        int x = Random.Range(-15, 15);
-        int y = Random.Range(-10, 10);
+        int LR = Random.Range(0, 2);
+
+        if (LR == 0)
+        {
+            int x = Random.Range(-1, 1);
+            int y = Random.Range(-1, 1);
+            spawning = new Vector2(x + 20, y);
+            Instantiate(Zombie, spawning, Quaternion.identity);
+        }
+
+        if (LR == 1)
+        {
+            int x = Random.Range(-1, 1);
+            int y = Random.Range(-1, 1);
+            spawning = new Vector2(x - 20, y);
+            Instantiate(Zombie, spawning, Quaternion.identity);
+        }
+
         anzahlZombies++;
-        spawning = new Vector2(x, y);
-        Instantiate(Zombie, spawning, Quaternion.identity);
     }
 
     private void NeueWelleStarten()
@@ -42,6 +56,9 @@ public class GameScript : MonoBehaviour
         if (anzahlZombies == 0)
         {
             //ICH WEI� FOR SCHLEIFE GEHT AUCH! BIN ZU FAUL
+            spawnZombie();
+            spawnZombie();
+            spawnZombie();
             spawnZombie();
             spawnZombie();
             spawnZombie();

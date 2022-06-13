@@ -6,6 +6,8 @@ public class ZombieScript : MonoBehaviour
 {
     private int speed = 2;
     private Transform Player;
+    private Transform Map;
+    private bool inArena;
 
     private float ZombieHP;
     private bool ZombieSchadenBekommen;
@@ -16,7 +18,9 @@ public class ZombieScript : MonoBehaviour
     {
         ZombieHP = 9;
         PlayerScript.SchlagCountdown = 3;
+        Map = GameObject.FindGameObjectWithTag("Map").GetComponent<Transform>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        inArena = false;
     }
 
     // Update is called once per frame
@@ -24,16 +28,28 @@ public class ZombieScript : MonoBehaviour
     {
         PlayerVerfolgen();
         PlayerScript.PlayerKannSchlagen();
-        Debug.Log(PlayerScript.SchlagCountdown);
+        //Debug.Log(PlayerScript.SchlagCountdown);
     }
 
     private void PlayerVerfolgen()
     {
-        transform.position = Vector2.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
+        if (inArena == false)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Map.position, speed * Time.deltaTime);
+        }
+        if (inArena == true)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Player.position, speed * Time.deltaTime);
+        }
     }
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Map")
+        {
+            inArena = true;
+        }
+
         if (collision.gameObject.tag == "Player" && Input.GetKey(KeyCode.Space) && PlayerScript.schlagfähig == true)
         {
             ZombieSchadenBekommen = true;
@@ -56,17 +72,16 @@ public class ZombieScript : MonoBehaviour
 
     private void ZombieRückstoß()
     {
-        if(ZombieKriegtRückstoß == true)
+        if (ZombieKriegtRückstoß == true)
         {
             transform.Translate(transform.position.x - Player.transform.position.x, transform.position.y - Player.transform.position.y, 0);
-            Debug.Log("Cbug");
             ZombieKriegtRückstoß = false;
         }
     }
 
     private void stirbZombie()
     {
-        if(ZombieHP == 0)
+        if (ZombieHP == 0)
         {
             GameScript.anzahlZombies--;
             GameScript.score += 100;

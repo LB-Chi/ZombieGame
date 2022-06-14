@@ -345,6 +345,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/AudioScript.cs"
 "Assets/Scripts/GameScript.cs"
+"Assets/Scripts/PauseScript.cs"
 "Assets/Scripts/PlayerScript.cs"
 "Assets/Scripts/ScenesScript.cs"
 "Assets/Scripts/ZombieScript.cs"

@@ -19,6 +19,7 @@ public class ScenesScript : MonoBehaviour
 
     public void ToGame(int scene)
     {
+        Time.timeScale = 1f;
         // File -> Build Settings - Da hab ich die Szenen eine "Nummer" gegeben per Drag&Drop und darum die Nummer 1 f�r Spiel. Die Lobby hat Nummer 0
         SceneManager.LoadScene(scene);
     }

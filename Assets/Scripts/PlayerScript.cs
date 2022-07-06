@@ -6,19 +6,29 @@ public class PlayerScript : MonoBehaviour
 {
     private int speed = 3;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
     public static bool schlagfähig;
     public static float SchlagCountdown;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerMovement();
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            TakeDamage(20);
+        }
     }
 
     private void PlayerMovement()
@@ -60,5 +70,12 @@ public class PlayerScript : MonoBehaviour
         {
             schlagfähig = false;
         }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
     }
 }

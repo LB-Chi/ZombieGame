@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioSceneScript : MonoBehaviour
 {
     public static AudioSceneScript instance;
- 
+    
     void Awake()
     {
         if (instance != null)

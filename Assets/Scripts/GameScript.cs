@@ -6,6 +6,14 @@ using TMPro;
 
 public class GameScript : MonoBehaviour
 {
+    public GameOver GameOver;
+    int currentHealth = 0;
+
+    public void GameOver1()
+    {
+        GameOver.Setup(currentHealth);
+    }
+
     public GameObject Zombie;
     private Vector2 spawning;
 
@@ -65,7 +73,7 @@ public class GameScript : MonoBehaviour
         }
     }
 
-    private void scoreAnzeigen()
+    public void scoreAnzeigen()
     {
         scoreText.text = "Score: " + score;
     }
